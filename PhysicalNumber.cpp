@@ -57,12 +57,12 @@ using namespace ariel;
         return *this;
 
     }
-	const PhysicalNumber PhysicalNumber::operator++(int a){
+	 PhysicalNumber PhysicalNumber::operator++(int a){
 		
 		 return *this;
 	}
 
-			const PhysicalNumber PhysicalNumber::operator--(int a){
+			 PhysicalNumber PhysicalNumber::operator--(int a){
 				 return *this;
 			}
 
