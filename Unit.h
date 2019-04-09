@@ -1,3 +1,8 @@
+/**
+ * Header file for the Unit class. 
+ * @author Israel Buskila and Moran Oshia
+ * @since 04-2019
+ */
 #pragma once
 #include <iostream>
 using namespace std;
