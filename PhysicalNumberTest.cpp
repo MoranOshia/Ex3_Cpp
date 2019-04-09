@@ -24,6 +24,12 @@ int main() {
     PhysicalNumber c(2, Unit::HOUR);
     PhysicalNumber d(30, Unit::MIN);
 
+    PhysicalNumber e(10, Unit::TON);
+    PhysicalNumber f(500, Unit::KG);
+    PhysicalNumber g(5000, Unit::G);
+    PhysicalNumber h(500, Unit::CM);
+    PhysicalNumber i(600, Unit::SEC);
+
     testcase
     .setname("Basic output")
     .CHECK_OUTPUT(a, "2[km]")
@@ -52,6 +58,35 @@ int main() {
     // YOUR TESTS - INSERT AS MANY AS YOU WANT
 
       .setname("...")
+      .setname("Basic input")
+      .CHECK_OK(istringstream("5[km]") >> a)
+      .CHECK_OUTPUT((a += PhysicalNumber(2, Unit::KM)), "7[km]")
+
+      .setname("Basic output")
+      .CHECK_OUTPUT(e, "10[ton]")
+      .CHECK_OUTPUT(f, "500[kg]")
+      .CHECK_OUTPUT(g, "5000[g]")
+      .CHECK_OUTPUT(h, "500[cm]")
+      .CHECK_OUTPUT(i, "600[sec]")
+
+    .setname("Compatible dimensions")
+    .CHECK_OUTPUT(b+h, "305[m]")
+    .CHECK_OUTPUT((a+=h), "7.005[km]")
+    .CHECK_OUTPUT(a, "7.005[km]")
+    .CHECK_OUTPUT(a+a, "14.010[km]")
+    .CHECK_OUTPUT(h-h, "0[cm]")
+    .CHECK_OUTPUT(i+c, "432600[sec]")
+    .CHECK_OUTPUT(d-i, "20[min]")
+    .CHECK_OUTPUT(d+c, "150[min]")
+    .CHECK_OUTPUT(e+f, "10.5[ton]")
+    .CHECK_OUTPUT(f-g, "495[kg]")
+    .CHECK_OUTPUT(g-g, "0[g]")
+
+    .setname("Incompatible dimensions")
+    .CHECK_THROWS(a+g)
+    .CHECK_THROWS(e+c)
+    .CHECK_THROWS(f+d)
+    .CHECK_THROWS(i+f)
 
       .print(cout, /*show_grade=*/false);
       grade = testcase.grade();
