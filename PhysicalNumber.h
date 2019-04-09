@@ -1,3 +1,9 @@
+/**
+ * Header file for the PhysicalNumber class. 
+ * @author Israel Buskila and Moran Oshia
+ * @since 04-2019
+ */
+ 
 #include "Unit.h"
 
 #include <iostream>
@@ -39,7 +45,6 @@ namespace ariel {
 
 			PhysicalNumber& operator-=(const PhysicalNumber& a);
 
-			PhysicalNumber& operator=(const PhysicalNumber& a);
 
 			
 			PhysicalNumber& operator++();
