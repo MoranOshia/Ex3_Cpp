@@ -75,7 +75,7 @@ int main() {
     .CHECK_OUTPUT(a, "7.005[km]")
     .CHECK_OUTPUT(a+a, "14.010[km]")
     .CHECK_OUTPUT(h-h, "0[cm]")
-    .CHECK_OUTPUT(i+c, "432600[sec]")
+    .CHECK_OUTPUT(i+c, "7800[sec]")
     .CHECK_OUTPUT(d-i, "20[min]")
     .CHECK_OUTPUT(d+c, "150[min]")
     .CHECK_OUTPUT(e+f, "10.5[ton]")
