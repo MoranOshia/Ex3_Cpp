@@ -20,28 +20,29 @@ namespace ariel {
 
     
 
+    public:
         double value;
 
-        Unit unit;
+        Unit unitN;
 
 
 
-    public:
 
-   
+    PhysicalNumber ();
 
         PhysicalNumber (double value,Unit unit);
 
-			const PhysicalNumber operator+();
+			 PhysicalNumber operator+();
 
-			const PhysicalNumber operator-();
+			 PhysicalNumber operator-();
 			
+			PhysicalNumber convert(PhysicalNumber& a);
 
-			const PhysicalNumber operator-(const PhysicalNumber& a);
+			 PhysicalNumber operator-(const PhysicalNumber& a);
 
-			const PhysicalNumber operator+(const PhysicalNumber& a);
+			 PhysicalNumber operator+(const PhysicalNumber& a);
 
-			PhysicalNumber& operator+=(const PhysicalNumber& a);
+			PhysicalNumber &operator+=(const PhysicalNumber& a);
 
 			PhysicalNumber& operator-=(const PhysicalNumber& a);
 
@@ -71,7 +72,7 @@ namespace ariel {
 			
 			friend ostream& operator<< (ostream& os, const PhysicalNumber& a);
 			
-			friend istream& operator>> (istream&  is, const PhysicalNumber& a);
+			friend istream& operator>> (istream&  is, PhysicalNumber& a);
 
 
     };
