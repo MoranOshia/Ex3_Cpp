@@ -36,8 +36,7 @@ using namespace ariel;
 		else{
 		switch ( this->unitN ) {
 			
-				// CM ,M ,KM \\
-
+				// CM ,M ,KM 
 				case 0 : 
 				{
 					// Process for CM
@@ -268,21 +267,25 @@ using namespace ariel;
 		
 	//arithmetic operators
      PhysicalNumber PhysicalNumber::operator+() {
-		//+a onry plus
+		//+this onry plus
 	 	return *this;
 
     }
 
      PhysicalNumber PhysicalNumber::operator-() {
-		//-a onry minus
-		this->value = (-1)*this->value;
-        return *this;
+		//-this onry minus
+		PhysicalNumber ans;
+		ans.value=(-1)*this->value;
+		ans.unitN=this->unitN;
+        return ans;
 
     }
 
      PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& a){
-		//(a+b) - sum of two Physical Numbers
-		PhysicalNumber ans=a;
+		//(this+a) - sum of two Physical Numbers
+		PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value+ans.value;
 		ans.unitN=this->unitN;
@@ -291,8 +294,10 @@ using namespace ariel;
     }
 
      PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& a){
-		//(a-b) - subtraction of two Physical Numbers
-       PhysicalNumber ans=a;
+		//(this-a) - subtraction of two Physical Numbers
+		PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value-ans.value;
 		ans.unitN=this->unitN;
@@ -302,16 +307,20 @@ using namespace ariel;
     }
 
     PhysicalNumber &PhysicalNumber::operator+=(const PhysicalNumber& a){
-		//a+=b
-		PhysicalNumber ans=a;
+		//this+=a
+		PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		this->value = this->value + ans.value;
         return *this;
     }
 
     PhysicalNumber& PhysicalNumber::operator-=(const  PhysicalNumber& a){
-		//a-=b
-        PhysicalNumber ans=a;
+		//this-=a
+        PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		this->value = this->value - ans.value;
         return *this;
@@ -319,17 +328,19 @@ using namespace ariel;
     }
 
 	PhysicalNumber PhysicalNumber::operator++(int a){
-		//a++
-		 return *this;
+		//this + a
+		this->value = this->value + a;
+        return *this;
 	}
 
 	PhysicalNumber PhysicalNumber::operator--(int a){
-		//a--	
+		//this - a	
+		this->value = this->value - a;
 			return *this;
 	}
 
     PhysicalNumber& PhysicalNumber::operator++(){
-		//a++
+		//this++
 		this->value++;
         return *this;
 
@@ -337,7 +348,7 @@ using namespace ariel;
     }
 
     PhysicalNumber& PhysicalNumber::operator--(){
-		//a--
+		//this--
         this->value--;
         return *this;
 
@@ -345,9 +356,11 @@ using namespace ariel;
 	
 	//Comparison operators
 	bool PhysicalNumber::operator<(const PhysicalNumber& a){
-		//a<b
+		//this<a
         
-		PhysicalNumber ans=a;
+		PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value < ans.value)
@@ -359,8 +372,10 @@ using namespace ariel;
     }
 	
 	bool PhysicalNumber::operator<=(const PhysicalNumber& a){
-		//a<=b
-        PhysicalNumber ans=a;
+		//this<=a
+        PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value <= ans.value)
@@ -372,8 +387,10 @@ using namespace ariel;
     }
 	
 	bool PhysicalNumber::operator>(const PhysicalNumber& a){
-		//a>b
-        PhysicalNumber ans=a;
+		//this>a
+        PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value > ans.value)
@@ -384,8 +401,10 @@ using namespace ariel;
     }
 	
 	bool PhysicalNumber::operator>=(const PhysicalNumber& a){
-		//a>=b
-		PhysicalNumber ans=a;
+		//this>=a
+		PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value >= ans.value)
@@ -397,9 +416,11 @@ using namespace ariel;
     }
 	
 	bool PhysicalNumber::operator==(const PhysicalNumber& a){
-		//a==b
+		//this==a
 		 
-        PhysicalNumber ans=a;
+        PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value == ans.value)
@@ -410,8 +431,10 @@ using namespace ariel;
     }
 	
 	bool PhysicalNumber::operator!=(const PhysicalNumber& a){
-		//a!=b
-        PhysicalNumber ans=a;
+		//this!=a
+        PhysicalNumber ans;
+		ans.value=a.value;
+		ans.unitN=a.unitN;
 		ans=convert(ans);
 		
 		if (this->value != ans.value)
@@ -477,7 +500,7 @@ using namespace ariel;
 		std::string token = s.substr(0, i); 
 		double v = stod(token);
 		a.value = v;
-		std::string token2 = s.substr(i+1, s.find("]"));
+		std::string token2 = s.substr(i+1, s.find("]")-(i+1));
 
 		if(token2 == "cm")
 		a.unitN = Unit::CM;
