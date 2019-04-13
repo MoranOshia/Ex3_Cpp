@@ -28,6 +28,9 @@ using namespace ariel;
     }  
 	
 	  PhysicalNumber PhysicalNumber::convert( PhysicalNumber& a){
+		  
+		string unit[]={"cm","m","km","sec","min","hour","g","kg","ton"}; 
+		
 		if (this->unitN == a.unitN)	
 		{
 				return a;
@@ -36,13 +39,13 @@ using namespace ariel;
 		else{
 		switch ( this->unitN ) {
 			
-				// CM ,M ,KM 
+				// CM ,M ,KM \\
 				case 0 : 
 				{
 					// Process for CM
 						if(a.unitN!=1 && a.unitN!=2)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==1) //M to CM
@@ -65,7 +68,7 @@ using namespace ariel;
 					// Process for M
 						if(a.unitN!=0 && a.unitN!=2)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==0) //CM to M
@@ -88,7 +91,7 @@ using namespace ariel;
 					{
 						if(a.unitN!=0 && a.unitN!=1)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==0) //CM to KM
@@ -116,7 +119,7 @@ using namespace ariel;
 					// Process for SEC
 						if(a.unitN!=4 && a.unitN!=5)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==4) //MIN to SEC
@@ -139,7 +142,7 @@ using namespace ariel;
 				{
 						if(a.unitN!=3 && a.unitN!=5)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==3) //SEC to MIN
@@ -162,7 +165,7 @@ using namespace ariel;
 					// Process for HOUR
 						if(a.unitN!=3 && a.unitN!=4)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==3) //SEC to HOUR
@@ -188,7 +191,7 @@ using namespace ariel;
 					{
 						if(a.unitN!=7 && a.unitN!=8)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument("Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==7) //KG to G
@@ -212,7 +215,7 @@ using namespace ariel;
 					{
 						if(a.unitN!=6 && a.unitN!=8)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument("Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==6) //G to KG
@@ -236,7 +239,7 @@ using namespace ariel;
 					{
 						if(a.unitN!=6 && a.unitN!=7)
 						{
-							throw std::invalid_argument( "Not possible to convert");
+							throw std::invalid_argument( "Units do not match - ["+unit[a.unitN]+"] cannot be converted to ["+unit[this->unitN]+"]");
 						}
 						else{
 							if(a.unitN==6) //G to TON
@@ -253,7 +256,11 @@ using namespace ariel;
 							}
 						}
 							
-					}						
+					}
+				
+				default:
+					return a;
+						break;
 				
 
 			}
@@ -263,7 +270,6 @@ using namespace ariel;
 		
 
 	}
-		
 		
 	//arithmetic operators
      PhysicalNumber PhysicalNumber::operator+() {
