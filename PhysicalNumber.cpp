@@ -510,28 +510,52 @@ using namespace ariel;
 		double v = stod(token);
 		a.value = v;
 		std::string token2 = s.substr(i+1, s.find("]")-(i+1));
-
-		if(token2 == "cm")
+		
+		if(token2 == "cm"){
 		a.unitN = Unit::CM;
-		if(token2 == "m")
+		a.value = v;
+		}
+		else if(token2 == "m"){
 		a.unitN = Unit::M;
-		if(token2 == "km")
+		a.value = v;
+		}
+		else if(token2 == "km"){
 		a.unitN = Unit::KM;
-		if(token2 == "sec")
+		a.value = v;
+		}
+		else if(token2 == "sec"){
 		a.unitN = Unit::SEC;
-		if(token2 == "min")
+		a.value = v;
+		}
+		else if(token2 == "min"){
 		a.unitN = Unit::MIN;
-		if(token2 == "hour")
+		a.value = v;
+		}
+		else if(token2 == "hour"){
 		a.unitN = Unit::HOUR;
-		if(token2 == "g")
+		a.value = v;
+		}
+		else if(token2 == "g"){
 		a.unitN = Unit::G;
-		if(token2 == "kg")
+		a.value = v;
+		}
+		else if(token2 == "kg"){
 		a.unitN = Unit::KG;
-		if(token2 == "ton")
+		a.value = v;
+		}
+		else if(token2 == "ton"){
 		a.unitN = Unit::TON;
+		a.value = v;
+		}
+		else
+		{
+			is.setstate(std::ios::badbit);
+		}
+		
 		
 		return is;
 	}
+
 
 
 
