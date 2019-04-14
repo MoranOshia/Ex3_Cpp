@@ -508,7 +508,7 @@ using namespace ariel;
 		int i = s.find(delimiter);
 		std::string token = s.substr(0, i); 
 		double v = stod(token);
-		a.value = v;
+		
 		std::string token2 = s.substr(i+1, s.find("]")-(i+1));
 		
 		if(token2 == "cm"){
