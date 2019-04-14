@@ -294,7 +294,7 @@ using namespace ariel;
 		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value+ans.value;
-		ans.unitN=this->unitN;
+		//ans.unitN=this->unitN;
 		return ans;
 
     }
@@ -306,7 +306,7 @@ using namespace ariel;
 		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value-ans.value;
-		ans.unitN=this->unitN;
+		//ans.unitN=this->unitN;
         return ans;
 
 
