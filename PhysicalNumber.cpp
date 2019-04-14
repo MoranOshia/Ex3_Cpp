@@ -41,7 +41,7 @@ using namespace ariel;
 			
 				// CM ,M ,KM \\
 				
-			case 0 : 
+				case 0 : 
 				{
 					// Process for CM
 						if(a.unitN!=1 && a.unitN!=2)
@@ -258,13 +258,10 @@ using namespace ariel;
 						}
 							
 					}
-				
-				default:
-					return a;
-						break;
-				
 
 			}
+			
+			return a;
 			
 		}
 			
@@ -295,7 +292,7 @@ using namespace ariel;
 		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value+ans.value;
-		//ans.unitN=this->unitN;
+		ans.unitN=this->unitN;
 		return ans;
 
     }
@@ -307,7 +304,7 @@ using namespace ariel;
 		ans.unitN=a.unitN;
 		ans=convert(ans);
 		ans.value=this->value-ans.value;
-		//ans.unitN=this->unitN;
+		ans.unitN=this->unitN;
         return ans;
 
 
@@ -336,19 +333,25 @@ using namespace ariel;
 
 	PhysicalNumber PhysicalNumber::operator++(int a){
 		//this + a
-		this->value = this->value + a;
-        return *this;
+		PhysicalNumber ans;
+		ans.value=this->value;
+		ans.unitN=this->unitN;
+		this->value++;
+			return ans;
 	}
 
 	PhysicalNumber PhysicalNumber::operator--(int a){
 		//this - a	
-		this->value = this->value - a;
-			return *this;
+		PhysicalNumber ans;
+		ans.value=this->value;
+		ans.unitN=this->unitN;
+		this->value--;
+			return ans;
 	}
 
     PhysicalNumber& PhysicalNumber::operator++(){
 		//this++
-		this->value++;
+		value=value +1;
         return *this;
 
 
@@ -356,9 +359,8 @@ using namespace ariel;
 
     PhysicalNumber& PhysicalNumber::operator--(){
 		//this--
-        this->value--;
+       value=value -1;
         return *this;
-
     } 
 	
 	//Comparison operators
