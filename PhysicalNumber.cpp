@@ -39,7 +39,7 @@ using namespace ariel;
 		else{
 		switch ( this->unitN ) {
 			
-				// CM ,M ,KM \\
+				// CM ,M ,KM 
 				
 				case 0 : 
 				{
@@ -113,7 +113,7 @@ using namespace ariel;
 					
 			
 				
-				// SEC ,MIN ,HOUR \\
+				// SEC ,MIN ,HOUR 
 				
 				case 3 : 
 				{
@@ -185,7 +185,7 @@ using namespace ariel;
 						
 				}
 				
-				// G ,KG ,TON \\
+				// G ,KG ,TON 
 				
 				case 6 : 
 					// Process for G
