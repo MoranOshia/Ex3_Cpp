@@ -504,13 +504,14 @@ using namespace ariel;
 		//Input of physical number
 		std::string s;
 		is >> s;
+		int size = s.length();
 		std::string delimiter = "[";
 		int i = s.find(delimiter);
 		std::string token = s.substr(0, i); 
 		double v = stod(token);
-		
-		std::string token2 = s.substr(i+1, s.find("]")-(i+1));
-		
+		int i2 = s.find("]");
+		std::string token2 = s.substr(i+1, i2-(i+1));
+		if(i < i2 && (i2+1) == size){
 		if(token2 == "cm"){
 		a.unitN = Unit::CM;
 		a.value = v;
@@ -550,11 +551,15 @@ using namespace ariel;
 		else
 		{
 			is.setstate(std::ios::badbit);
+		}}
+		else{
+			is.setstate(std::ios::badbit);
 		}
 		
 		
 		return is;
 	}
+
 
 
 
