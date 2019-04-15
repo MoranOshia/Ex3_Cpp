@@ -503,48 +503,52 @@ using namespace ariel;
 	istream& ariel::operator>> (istream&  is, PhysicalNumber& a) {
 		//Input of physical number
 		std::string s;
+		
+		
 		is >> s;
+
 		int size = s.length();
-		std::string delimiter = "[";
-		int i = s.find(delimiter);
+		
+		int i = s.find("[");
 		std::string token = s.substr(0, i); 
 		double v = stod(token);
+		
 		int i2 = s.find("]");
 		std::string token2 = s.substr(i+1, i2-(i+1));
-		if(i < i2 && (i2+1) == size){
-		if(token2 == "cm"){
+		if(i < i2 && (i2+1) == size && i > 0){
+		if(token2 == "cm" || token2 == "CM"){
 		a.unitN = Unit::CM;
 		a.value = v;
 		}
-		else if(token2 == "m"){
+		else if(token2 == "m" || token2 == "M"){
 		a.unitN = Unit::M;
 		a.value = v;
 		}
-		else if(token2 == "km"){
+		else if(token2 == "km" || token2 == "KM"){
 		a.unitN = Unit::KM;
 		a.value = v;
 		}
-		else if(token2 == "sec"){
+		else if(token2 == "sec" || token2 == "SEC"){
 		a.unitN = Unit::SEC;
 		a.value = v;
 		}
-		else if(token2 == "min"){
+		else if(token2 == "min" || token2 == "MIN"){
 		a.unitN = Unit::MIN;
 		a.value = v;
 		}
-		else if(token2 == "hour"){
+		else if(token2 == "hour" || token2 == "HOUR"){
 		a.unitN = Unit::HOUR;
 		a.value = v;
 		}
-		else if(token2 == "g"){
+		else if(token2 == "g"|| token2 =="G"){
 		a.unitN = Unit::G;
 		a.value = v;
 		}
-		else if(token2 == "kg"){
+		else if(token2 == "kg"|| token2 == "KG"){
 		a.unitN = Unit::KG;
 		a.value = v;
 		}
-		else if(token2 == "ton"){
+		else if(token2 == "ton"|| token2 =="TON"){
 		a.unitN = Unit::TON;
 		a.value = v;
 		}
@@ -559,7 +563,6 @@ using namespace ariel;
 		
 		return is;
 	}
-
 
 
 
