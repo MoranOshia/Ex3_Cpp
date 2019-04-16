@@ -46,7 +46,7 @@ namespace ariel {
 
 			PhysicalNumber& operator-=(const PhysicalNumber& a);
 
-
+			std::string unitInString(const PhysicalNumber& a);
 			
 			PhysicalNumber& operator++();
 
