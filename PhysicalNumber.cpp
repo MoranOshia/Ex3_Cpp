@@ -343,7 +343,7 @@ using namespace ariel;
     }
 
 	PhysicalNumber PhysicalNumber::operator++(int a){
-		//this + a
+		//++this
 		PhysicalNumber ans;
 		ans.value=this->value;
 		ans.unitN=this->unitN;
@@ -352,7 +352,7 @@ using namespace ariel;
 	}
 
 	PhysicalNumber PhysicalNumber::operator--(int a){
-		//this - a	
+		//--this	
 		PhysicalNumber ans;
 		ans.value=this->value;
 		ans.unitN=this->unitN;
