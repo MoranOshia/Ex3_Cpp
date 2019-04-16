@@ -47,7 +47,8 @@ using namespace ariel;
 					// Process for CM
 						if(a.unitN!=Unit::M && a.unitN!=Unit::KM)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [cm]");
 						}
 						else{
 							if(a.unitN==Unit::M) //M to CM
@@ -70,7 +71,8 @@ using namespace ariel;
 					// Process for M
 						if(a.unitN!=Unit::CM && a.unitN!=Unit::KM)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [m]");
 						}
 						else{
 							if(a.unitN==Unit::CM) //CM to M
@@ -93,7 +95,8 @@ using namespace ariel;
 					{
 						if(a.unitN!=Unit::CM && a.unitN!=Unit::M)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [km]");
 						}
 						else{
 							if(a.unitN==Unit::CM
@@ -122,10 +125,11 @@ using namespace ariel;
 					// Process for SEC
 						if(a.unitN!=Unit::MIN && a.unitN!=Unit::HOUR)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [sec]");
 						}
 						else{
-							if(a.unitN==Unit::M) //MIN to SEC
+							if(a.unitN==Unit::MIN) //MIN to SEC
 							{
 								
 								a.value=a.value*60;
@@ -145,7 +149,8 @@ using namespace ariel;
 				{
 						if(a.unitN!=Unit::SEC && a.unitN!=Unit::HOUR)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [min]");
 						}
 						else{
 							if(a.unitN==Unit::SEC) //SEC to MIN
@@ -168,7 +173,8 @@ using namespace ariel;
 					// Process for HOUR
 						if(a.unitN!=Unit::SEC && a.unitN!=Unit::MIN)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [hour]");
 						}
 						else{
 							if(a.unitN==Unit::SEC) //SEC to HOUR
@@ -194,7 +200,8 @@ using namespace ariel;
 					{
 						if(a.unitN!=Unit::KG && a.unitN!=Unit::TON)
 						{
-							throw std::invalid_argument("Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [g]");
 						}
 						else{
 							if(a.unitN==Unit::KG) //KG to G
@@ -218,7 +225,8 @@ using namespace ariel;
 					{
 						if(a.unitN!=Unit::G && a.unitN!=Unit::TON)
 						{
-							throw std::invalid_argument("Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [kg]");
 						}
 						else{
 							if(a.unitN==Unit::G) //G to KG
@@ -242,7 +250,8 @@ using namespace ariel;
 					{
 						if(a.unitN!=Unit::G && a.unitN!=Unit::KG)
 						{
-							throw std::invalid_argument( "Units do not match - [""] cannot be converted to [""]");
+							std::string tokenA =unitInString(a);
+							throw std::invalid_argument( "Units do not match -"+tokenA+" cannot be converted to [ton]");
 						}
 						else{
 							if(a.unitN==Unit::G) //G to TON
@@ -455,7 +464,52 @@ using namespace ariel;
 		return false;
 
     }
+	std::string PhysicalNumber::unitInString(const PhysicalNumber& a) {
+    switch (a.unitN)
 
+    {
+
+    case Unit::CM:
+			{
+				return "[cm]";
+			}
+			
+			case Unit::M:
+			{
+				return "[m]";
+			}
+			case Unit::KM:
+			{
+				return "[km]";
+			}
+			case Unit::SEC:
+			{
+				return "[sec]";
+			}
+			case Unit::MIN:
+			{
+				return "[min]";
+			}
+			case Unit::HOUR:
+			{
+				return "[hour]";
+			}
+			case Unit::G:
+			{
+				return "[g]";
+			}
+			case Unit::KG:
+			{
+				return "[kg]";
+			}
+			case Unit::TON:
+			{
+				return "[ton]";
+			}
+
+    }
+
+}
 	//Input output operators
 	ostream& ariel::operator<< (ostream& os, const PhysicalNumber& a) {
 		//Output of physical number
@@ -565,7 +619,5 @@ using namespace ariel;
 		
 		return is;
 	}
-
-
 
 
