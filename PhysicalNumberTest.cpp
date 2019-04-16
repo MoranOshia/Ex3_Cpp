@@ -23,6 +23,12 @@ int main() {
     PhysicalNumber b(300, Unit::M);
     PhysicalNumber c(2, Unit::HOUR);
     PhysicalNumber d(30, Unit::MIN);
+    //our test
+    PhysicalNumber e(100, Unit::CM);
+    PhysicalNumber f(1000, Unit::M);
+    PhysicalNumber g(1, Unit::KM);
+    PhysicalNumber h(2, Unit::TON);
+    PhysicalNumber i(2, Unit::HOUR);
 
 
 
@@ -79,10 +85,21 @@ int main() {
       .CHECK_OUTPUT(d-c, "110[min]")
       .CHECK_OUTPUT((a+=b), "2010[kg]")
       .CHECK_OUTPUT((a-=b), "2000[kg]")
-      // .CHECK_OUTPUT(d++c, "130[min]")
-      // .CHECK_OUTPUT(d--c, "120[min]")
+      .CHECK_OUTPUT((d+=c), "130[min]")
+      .CHECK_OUTPUT((d-=c), "120[min]")
       .CHECK_OUTPUT(b++, "10000[g]")
       .CHECK_OUTPUT(b--, "10001[g]")
+      .CHECK_OUTPUT(e+f, "100100[cm]")
+      .CHECK_OUTPUT(g-f, "0[km]")
+      .CHECK_OUTPUT((f+=g), "2000[m]")
+      .CHECK_OUTPUT((f-=g), "1000[m]")
+      .CHECK_OUTPUT(e+g-f, "100[cm]")
+      .CHECK_OUTPUT(-e, "-100[cm]")
+      .CHECK_OUTPUT(e, "100[cm]")
+      .CHECK_OUTPUT(++f, "1001[m]")
+      .CHECK_OUTPUT(--f, "1000[m]")
+      .CHECK_OUTPUT(+f, "1000[m]")
+      
 
       .setname("different dimensions")
       .CHECK_THROWS(a+c)
@@ -92,7 +109,22 @@ int main() {
       .CHECK_THROWS(a+PhysicalNumber(1, Unit::CM))
       .CHECK_THROWS(b-PhysicalNumber(2, Unit::M))
       .CHECK_THROWS(c-PhysicalNumber(2, Unit::KM))
+      .CHECK_THROWS(e+h)
+      .CHECK_THROWS(g+=i)
+      .CHECK_THROWS(d-f)
+
      
+      .setname("comparison operatos")
+      .CHECK_EQUAL(a<a, false)
+      .CHECK_EQUAL(a>b, true )
+      .CHECK_EQUAL(a<=a, true)
+      .CHECK_EQUAL(a<a, false)
+      .CHECK_EQUAL(a == a, true)
+      .CHECK_EQUAL(d>=d, true)
+      .CHECK_EQUAL(c!=d, true)
+      .CHECK_EQUAL(a==h, true)
+      .CHECK_EQUAL(f!=g, false)
+
 
 
 
