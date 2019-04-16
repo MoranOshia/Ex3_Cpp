@@ -567,11 +567,12 @@ using namespace ariel;
 		
 		int i = s.find("[");
 		std::string token = s.substr(0, i); 
-		double v = stod(token);
+		
 		
 		int i2 = s.find("]");
 		std::string token2 = s.substr(i+1, i2-(i+1));
-		if(i < i2 && (i2+1) == size && i > 0){
+		if(i < i2 && (i2+1) == size && i > 0 && i>0){
+			double v = stod(token);
 		if(token2 == "cm" || token2 == "CM"){
 		a.unitN = Unit::CM;
 		a.value = v;
