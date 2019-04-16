@@ -8,7 +8,7 @@
 using namespace std;
 namespace ariel
 {
-enum Unit
+enum class Unit
 {
     M,
     KM,
